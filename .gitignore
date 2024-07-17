@@ -1,0 +1,15 @@
+# Sanal ortam dizinini yok say
+venv/
+
+# Pycache dosyalarını yok say
+__pycache__/
+
+# Django migration dosyalarını yok say
+*/migrations/*
+
+# Ortak olarak yok sayılması gereken diğer dosyalar
+*.pyc
+*.pyo
+*.pyd
+.env
+.DS_Store
