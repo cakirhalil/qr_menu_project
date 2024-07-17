@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Menü</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/spinner.css' %}">
+</head>
+<body class="bg-gray-100">
+    <div id="spinner" class="spinner"></div>
+    {% if company %}
+    <div class="relative bg-cover bg-left h-screen" style="background-image: url('{{ company.background_image.url }}');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center">
+            <img src="{{ company.logo.url }}" alt="Logo" class="w-24 h-24 rounded-full mb-4">
+            <h1 class="text-4xl font-bold">{{ company.name }}</h1>
+            <p class="text-lg">{{ company.info }}</p>
+            <h2 class="text-2xl mt-4">Hoş Geldiniz!</h2>
+            <div class="absolute bottom-20 animate-bounce">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="relative -mt-12 bg-white rounded-t-3xl p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {% for category in categories %}
+            <a href="{{ category.link }}" class="relative bg-white shadow-md rounded overflow-hidden">
+                <img src="{{ category.image.url }}" alt="{{ category.name }}" class="w-full h-32 object-cover">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <h3 class="text-xl font-semibold text-white bg-opacity-75 bg-black p-2 rounded">{{ category.name }}</h3>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{% static 'js/spinner.js' %}"></script>
+</body>
+</html>
